@@ -1,15 +1,16 @@
 package yoocommon
 
+// Item all fields are required
 type Item struct {
 	// parameter with the name of the product or service
 	Description string `json:"description"`
 
 	// parameter with the amount per unit of product
-	Quantity string `json:"quantity"`
+	Quantity int `json:"quantity"`
 
 	// parameter specifying the quantity of goods (only integers, for example 1)
 	Amount *Amount `json:"amount"`
 
 	// parameter with the fixed value 1 (price without VAT)
-	VatCode string `json:"vat_code"`
+	VatCode int `json:"vat_code"`
 }
