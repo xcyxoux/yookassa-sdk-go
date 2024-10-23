@@ -19,11 +19,12 @@ const (
 
 // PaymentHandler works with requests related to Payments.
 type PaymentHandler struct {
-	client *Client
+	client     *Client
+	logRequest bool
 }
 
-func NewPaymentHandler(client *Client) *PaymentHandler {
-	return &PaymentHandler{client: client}
+func NewPaymentHandler(client *Client, logRequest bool) *PaymentHandler {
+	return &PaymentHandler{client: client, logRequest: logRequest}
 }
 
 // CapturePayment confirms payment, accepts and returns the Payment entity.
@@ -85,6 +86,9 @@ func (p *PaymentHandler) CancelPayment(paymentId string) (*yoopayment.Payment, e
 // CreatePayment creates a payment, accepts and returns the Payment entity.
 func (p *PaymentHandler) CreatePayment(payment *yoopayment.Payment) (*yoopayment.Payment, error) {
 	paymentJson, err := json.MarshalIndent(payment, "", "\t")
+	if p.logRequest {
+		fmt.Println(string(paymentJson))
+	}
 	if err != nil {
 		return nil, err
 	}
