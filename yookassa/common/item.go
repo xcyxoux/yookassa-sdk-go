@@ -13,4 +13,8 @@ type Item struct {
 
 	// parameter with the fixed value 1 (price without VAT)
 	VatCode int `json:"vat_code"`
+
+	PaymentSubject string `json:"payment_subject"`
+
+	PaymentMode string `json:"payment_mode"`
 }
